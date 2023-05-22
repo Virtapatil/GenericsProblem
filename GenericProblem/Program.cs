@@ -29,10 +29,45 @@
             Console.WriteLine($"The maximum string is: {maxString}");*/
 
             //MaxMethod
-            string maxString = GenericMaxMethod.MaxString("apple", "banana", "orange", "grape");
-            Console.WriteLine($"The maximum string is: {maxString}");
+            /*string maxString = GenericMaxMethod.MaxString("apple", "banana", "orange", "grape");
+            Console.WriteLine($"The maximum string is: {maxString}");*/
+            // Example usage for integers
+            int maxInt = MaxUsingGenericMethod<int>.MaxValue(10, 5, 8);
+            Console.WriteLine("Max integer value: " + maxInt);
 
-            
+            // Example usage for strings
+            string maxString = MaxUsingGenericMethod<string>.MaxValue("apple", "banana", "orange");
+            Console.WriteLine("Max string value: " + maxString);
+
+            // Example usage for custom objects
+            var obj1 = new CustomObject(10);
+            var obj2 = new CustomObject(5);
+            var obj3 = new CustomObject(8);
+            CustomObject maxObj = MaxUsingGenericMethod<CustomObject>.MaxValue(obj1, obj2, obj3);
+            Console.WriteLine("Max custom object value: " + maxObj.Value);
+
+            Console.ReadLine();
         }
+    }
+
+    // Example custom object for demonstration
+    public class CustomObject : IComparable<CustomObject>
+    {
+        public int Value { get; set; }
+
+        public CustomObject(int value)
+        {
+            Value = value;
+        }
+
+        public int CompareTo(CustomObject other)
+        {
+            if (other == null)
+                return 1;
+            else
+                return Value.CompareTo(other.Value);
+        }
+
+
     }
 }
